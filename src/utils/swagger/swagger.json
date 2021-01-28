@@ -1,0 +1,258 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Coffee shop service",
+    "version": "1.0.0"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/api/product/all": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get all products",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/products-success"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error-internal"
+            }
+          }
+        }
+      }
+    },
+    "/api/product/discounts": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get all discounts",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/discounts-success"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error-internal"
+            }
+          }
+        }
+      }
+    },
+    "/api/order/create": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Create an order",
+        "parameters":[
+          {
+            "in":"body",
+            "name":"creation-order-payload",
+            "description":"The payload to create an order",
+            "required": true,
+            "schema":{
+              "$ref":"#/definitions/creation-order-payload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/order-success"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/order-bad-request"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error-internal"
+            }
+          }
+        }
+      }
+    },
+    "/api/order/confirm/{id}": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Confirm an order",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/confirm-order-success"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/confirmation-order-bad-request"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error-internal"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "error-internal": {
+      "type": "string",
+      "example": "Some internal error"
+    },
+    "order-bad-request": {
+      "type": "string",
+      "example": "'productsId' is required"
+    },
+    "confirmation-order-bad-request": {
+      "type": "string",
+      "example": "The order number 75 is incorrect"
+    },
+    "creation-order-payload": {
+      "type": "object",
+      "required": [
+        "productsId",
+        "discountsId"
+      ],
+      "properties": {
+        "productsId": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "2p"
+          }
+        },
+        "discountsId": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "3d"
+          }
+        }
+      }
+    },
+    "products-success": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1p"
+          },
+          "name": {
+            "type": "string",
+            "example": "water"
+          },
+          "priceWithoutTax": {
+            "type": "number",
+            "example": "2"
+          },
+          "tax": {
+            "type": "number",
+            "example": "0.1"
+          },
+          "price": {
+            "type": "number",
+            "example": "2.2"
+          }
+        }
+      }
+    },
+    "discounts-success": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "2d"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "3p"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "beer"
+                },
+                "discount": {
+                  "type": "number",
+                  "example": "0.2"
+                },
+                "price": {
+                  "type": "number",
+                  "example": "4.8"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "order-success": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": "76"
+        },
+        "totalPrice": {
+          "type": "number",
+          "example": "39.56"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "beer"
+              },
+              "price": {
+                "type": "number",
+                "example": "4.8"
+              }
+            }
+          }
+        }
+      }
+    },
+    "confirm-order-success": {
+      "type": "string",
+      "example": "The order 80 has been closed"
+    }
+  }
+}

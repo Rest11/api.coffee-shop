@@ -1,0 +1,36 @@
+{
+  "name": "api.coffee-shop",
+  "version": "1.0.0",
+  "description": "Service to work with coffee shop",
+  "author": "Max Shynkarenko",
+  "license": "UNLICENSED",
+  "main": "index.js",
+  "engines": {
+    "node": "12.16.3"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "joi": "17.3.0",
+    "swagger-ui-express": "4.1.6"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.11",
+    "@types/hapi__joi": "17.1.6",
+    "@types/swagger-ui-express": "4.1.2",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.1.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-mocha": "6.3.0",
+    "eslint-plugin-node": "11.1.0",
+    "nodemon": "2.0.7"
+  }
+}

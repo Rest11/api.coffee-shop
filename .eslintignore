@@ -1,0 +1,5 @@
+**/.nyc_output/*.*
+**/nyc-reports/*.*
+**/coverage/*.*
+**/node_modules/*.*
+*.yaml
