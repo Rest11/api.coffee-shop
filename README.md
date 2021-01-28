@@ -3,8 +3,10 @@ Task for AGNS-TECH
 
 #### How to deploy
 1) clone the service `git clone https://github.com/Rest11/api.coffee-shop.git`  
-2) copy and rename the config file `cp .env.sample .env`  
-3) run the service `npm start`  
+2) go to the app folder `cd api.coffee-shop`   
+3) copy and rename the config file `cp .env.sample .env`  
+4) install all packages `npm i`
+5) run the service `npm start`  
 
 [Please check the swagger](http://localhost:3000/swagger/)
 
